@@ -3,40 +3,36 @@ package com.example.smp_4;
 import java.util.ArrayList;
 
 public class Deluxe extends Pizza {
-    public void deluxePizza() {
-        setToppings(Topping.SAUSAGE);
-        setToppings(Topping.PEPPERONI);
-        setToppings(Topping.GREEN_PEPPER);
-        setToppings(Topping.ONION);
-        setToppings(Topping.MUSHROOM);
-        Sauce();
 
-    }
-
-    public void size() {
-        //Do we need to work on the UI for this?
-    }
-
-    public void extraSauce(){
-
-    }
-    public void extraCheese(){
-
-    }
-
-    public void Sauce(){
-        setSauce(Sauce.TOMATO);
+    public Deluxe(Size size, boolean extraSauce, boolean extraCheese){
+        this.size = size;
+        this.sauce = Sauce.TOMATO;
+        this.extraCheese = extraCheese;
+        this.extraSauce = extraSauce;
+        toppings.add(Topping.SAUSAGE);
+        toppings.add(Topping.MUSHROOM);
+        toppings.add(Topping.GREEN_PEPPER);
+        toppings.add(Topping.PEPPERONI);
+        toppings.add(Topping.ONION);
     }
 
     @Override
     public double price() {
+        double price = 0;
+
         if (size.equals(Size.SMALL)) {
-            return 14.99;
+            price = 14.99;
         } else if (size.equals(Size.MEDIUM)) {
-            return 16.99;
+            price = 16.99;
         } else if (size.equals(Size.LARGE)) {
-            return 18.99;
+            price = 18.99;
         }
-        return 0;
+        if(extraCheese){
+            price += 1.0;
+        }
+        if(extraSauce){
+            price += 1.0;
+        }
+        return price;
     }
 }
