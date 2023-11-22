@@ -4,14 +4,7 @@ import java.util.ArrayList;
 
 public class BuildYourOwn extends Pizza{
 
-    public BuildYourOwn(Sauce sauce, Size size, boolean extraSauce, boolean extraCheese, ArrayList<Topping> toppings){
-        this.sauce = sauce;
-        this.toppings = toppings;
-        this.size = size;
-        this.sauce = Sauce.ALFREDO;
-        this.extraCheese = extraCheese;
-        this.extraSauce = extraSauce;
-
+    public BuildYourOwn(){
     }
     @Override
     public double price() {
@@ -30,9 +23,10 @@ public class BuildYourOwn extends Pizza{
             price += 1.0;
         }
         for(int i = 0; i < toppings.size(); i++){
-            price += 1.0;
+            if(i > 2) {
+                price += 1.49; // first 3 toppings free, add 1.49 for every extra topping
+            }
         }
-
         return price;
     }
 }

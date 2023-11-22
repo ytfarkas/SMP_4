@@ -2,11 +2,8 @@ package com.example.smp_4;
 
 public class Pepperoni extends Pizza{
 
-    public Pepperoni(Size size, boolean extraSauce, boolean extraCheese){
-        this.size = size;
+    public Pepperoni(){
         this.sauce = Sauce.TOMATO;
-        this.extraCheese = extraCheese;
-        this.extraSauce = extraSauce;
         toppings.add(Topping.PEPPERONI);
     }
     @Override

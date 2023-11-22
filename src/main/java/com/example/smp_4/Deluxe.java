@@ -4,11 +4,8 @@ import java.util.ArrayList;
 
 public class Deluxe extends Pizza {
 
-    public Deluxe(Size size, boolean extraSauce, boolean extraCheese){
-        this.size = size;
+    public Deluxe(){
         this.sauce = Sauce.TOMATO;
-        this.extraCheese = extraCheese;
-        this.extraSauce = extraSauce;
         toppings.add(Topping.SAUSAGE);
         toppings.add(Topping.MUSHROOM);
         toppings.add(Topping.GREEN_PEPPER);

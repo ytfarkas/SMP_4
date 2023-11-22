@@ -2,11 +2,8 @@ package com.example.smp_4;
 
 public class Supreme extends Pizza{
 
-    public Supreme(Size size, boolean extraSauce, boolean extraCheese){
-        this.size = size;
+    public Supreme(){
         this.sauce = Sauce.TOMATO;
-        this.extraCheese = extraCheese;
-        this.extraSauce = extraSauce;
         toppings.add(Topping.BLACK_OLIVE);
         toppings.add(Topping.ONION);
         toppings.add(Topping.GREEN_PEPPER);

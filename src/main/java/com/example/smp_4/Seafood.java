@@ -1,11 +1,8 @@
 package com.example.smp_4;
 
 public class Seafood extends Pizza{
-    public Seafood(Size size, boolean extraSauce, boolean extraCheese){
-        this.size = size;
+    public Seafood(){
         this.sauce = Sauce.ALFREDO;
-        this.extraCheese = extraCheese;
-        this.extraSauce = extraSauce;
         toppings.add(Topping.SHRIMP);
         toppings.add(Topping.SQUID);
         toppings.add(Topping.CRAB_MEAT);
