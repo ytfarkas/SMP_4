@@ -1,11 +1,9 @@
 package com.example.smp_4;
 
 public class Meatzza extends Pizza{
-    public Meatzza(Size size, boolean extraSauce, boolean extraCheese){
-        this.size = size;
+    public Meatzza(){
+
         this.sauce = Sauce.TOMATO;
-        this.extraCheese = extraCheese;
-        this.extraSauce = extraSauce;
         toppings.add(Topping.PEPPERONI);
         toppings.add(Topping.HAM);
         toppings.add(Topping.BEEF);
