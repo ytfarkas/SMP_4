@@ -1,14 +1,22 @@
 package com.example.smp_4;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 public class StoreOrderController {
-    @FXML
-    private Label welcomeText;
+   @FXML
+    private Button cancelOrderButton;
+
+   @FXML
+    private Button exportStoreOrdersButton;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+    private ChoiceBox orderDropdown;
+
+    @FXML
+    private ListView orderItems;
+
+    @FXML
+    private TextField orderTotal;
+
 }
