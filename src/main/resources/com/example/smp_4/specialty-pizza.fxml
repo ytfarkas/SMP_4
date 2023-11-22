@@ -22,19 +22,19 @@
                </image>
             </ImageView>
             <ComboBox fx:id="Pizza_Selection" layoutX="229.0" layoutY="38.0" onAction="#SelectPizza" prefWidth="150.0" promptText="Select Pizza" />
-            <RadioButton fx:id="sizeSmall" layoutX="229.0" layoutY="71.0" mnemonicParsing="false" onAction="#pizzaSize" text="Small">
+            <RadioButton fx:id="sizeSmall" layoutX="229.0" layoutY="71.0" mnemonicParsing="false" text="Small">
                <toggleGroup>
                   <ToggleGroup fx:id="Size" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="sizeMedium" layoutX="229.0" layoutY="103.0" mnemonicParsing="false" onAction="#PizzaSize" text="Medium" toggleGroup="$Size" />
-            <RadioButton fx:id="sizeLarge" layoutX="229.0" layoutY="131.0" mnemonicParsing="false" onAction="#PizzaSize" text="Large" toggleGroup="$Size" />
+            <RadioButton fx:id="sizeMedium" layoutX="229.0" layoutY="103.0" mnemonicParsing="false" text="Medium" toggleGroup="$Size" />
+            <RadioButton fx:id="sizeLarge" layoutX="229.0" layoutY="131.0" mnemonicParsing="false" text="Large" toggleGroup="$Size" />
             <ListView fx:id="toppingsBox" layoutX="14.0" layoutY="200.0" prefHeight="200.0" prefWidth="200.0" />
             <Label layoutX="229.0" layoutY="266.0" prefHeight="17.0" prefWidth="92.0" text="Sauce" />
             <TextField fx:id="sauceBox" editable="false" layoutX="224.0" layoutY="288.0" />
             <CheckBox fx:id="extraSauceBox" layoutX="224.0" layoutY="321.0" mnemonicParsing="false" text="Extra Sauce" />
             <CheckBox fx:id="extraCheeseBox" layoutX="224.0" layoutY="351.0" mnemonicParsing="false" text="Extra Cheese" />
-            <Button fx:id="ConfirmPizza" layoutX="294.0" layoutY="449.0" mnemonicParsing="false" text="Confirm" />
+            <Button fx:id="ConfirmPizza" layoutX="294.0" layoutY="449.0" mnemonicParsing="false" onAction="#confirmButton" text="Confirm" />
             <TextField fx:id="priceBox" editable="false" layoutX="53.0" layoutY="449.0" />
          </children>
       </AnchorPane>

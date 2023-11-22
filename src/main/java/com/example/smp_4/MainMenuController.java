@@ -19,6 +19,12 @@ public class MainMenuController {
     private Button buildPizzaButton;
 
     @FXML
+    private Button yourOrderButton;
+
+    @FXML
+    private Button storeOrderButton;
+
+    @FXML
     void specialtyPizzaMenu(ActionEvent event) throws IOException {
         FXMLLoader SpecialtyPizzaMenu = new FXMLLoader(getClass().getResource("specialty-pizza.fxml"));
         Parent root = SpecialtyPizzaMenu.load();
@@ -40,4 +46,27 @@ public class MainMenuController {
         stage.show();
     }
 
-}
+    @FXML
+    void yourOrder(ActionEvent event) throws IOException {
+        FXMLLoader currentOrderMenu = new FXMLLoader(getClass().getResource("current-order.fxml"));
+        Parent root = currentOrderMenu.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Current Order");
+        stage.show();
+
+    }
+
+    @FXML
+    void storeOrder(ActionEvent event) throws IOException{
+        FXMLLoader storeOrderMenu = new FXMLLoader(getClass().getResource("store-order.fxml"));
+        Parent root = storeOrderMenu.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Store Order");
+        stage.show();
+    }
+
+    }
