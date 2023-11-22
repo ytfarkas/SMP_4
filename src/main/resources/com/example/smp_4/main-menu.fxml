@@ -41,8 +41,22 @@
                      </graphic>
                   </Button>
                </children></AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="yourOrderButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#yourOrder" prefHeight="200.0" prefWidth="300.0" text="Your Order">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Button fx:id="storeOrderButton" contentDisplay="TOP" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" onAction="#storeOrder" prefHeight="186.0" prefWidth="279.0" text="Store Order">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Button>
+               </children></AnchorPane>
          </children>
       </GridPane>
    </children>

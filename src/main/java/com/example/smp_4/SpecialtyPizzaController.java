@@ -2,6 +2,8 @@ package com.example.smp_4;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -10,6 +12,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
+import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class SpecialtyPizzaController {
@@ -47,6 +50,7 @@ public class SpecialtyPizzaController {
     @FXML
     private TextField priceBox;
 
+
 @FXML
 private void initialize(){
     Pizza_Selection.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
@@ -54,13 +58,22 @@ private void initialize(){
     Size.selectedToggleProperty().addListener((observable, oldValue, newValue) -> updatePrice());
     extraSauceBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
     extraCheeseBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
-
+    Pizza_Selection.setValue("Deluxe");
+    Size.selectToggle(sizeSmall);
 }
 
-    @FXML
-    void PizzaSize(ActionEvent event) {
+   @FXML
+    void confirmButton(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("current-order.fxml")));
+        Parent root = (Parent) loader.load();
+
+        CurrentOrderController currentOrderController = loader.getController();
+        //currentOrderController.addOrder(PizzaMaker.createPizza(Pizza_Selection.getValue()));
 
     }
+
+
 
     @FXML
     void SelectPizza(ActionEvent event) {
@@ -121,8 +134,8 @@ private void initialize(){
     }
 
 
-    @FXML
-    void pizzaSize(ActionEvent event) {
+   @FXML
+    void PizzaSize(ActionEvent event) {
 
     }
 

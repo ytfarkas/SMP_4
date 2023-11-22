@@ -11,7 +11,7 @@ public class PizzaStoreApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader MainMenu = new FXMLLoader(PizzaStoreApplication.class.getResource("main-menu.fxml"));
-        Scene scene = new Scene(MainMenu.load(), 600, 600);
+        Scene scene = new Scene(MainMenu.load(), 600, 400);
         stage.setTitle("DnY Pizza!");
         stage.setScene(scene);
         stage.show();
