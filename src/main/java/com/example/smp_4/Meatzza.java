@@ -28,4 +28,22 @@ public class Meatzza extends Pizza{
 
         return price;
     }
+    @Override
+    public String toString(){
+
+        String str = "[Meatzza] Pepperoni Beef Ham Sausage " +
+                size.name() + " " + sauce.name() + " ";
+
+        if(extraSauce){
+            str = str + "extra Sauce ";
+        }
+
+        if(extraCheese){
+            str = str + "extra cheese ";
+        }
+
+        str = str + "$" + this.price();
+
+        return str;
+    }
 }

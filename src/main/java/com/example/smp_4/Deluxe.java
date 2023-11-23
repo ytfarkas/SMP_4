@@ -32,4 +32,22 @@ public class Deluxe extends Pizza {
         }
         return price;
     }
+    @Override
+    public String toString(){
+
+        String str = "[Deluxe] Sausage Mushroom Green Pepper Pepperoni Onion " +
+                size.name() + " " + sauce.name() + " ";
+
+        if(extraSauce){
+            str = str + "extra Sauce ";
+        }
+
+        if(extraCheese){
+            str = str + "extra cheese ";
+        }
+
+        str = str + "$" + this.price();
+
+        return str;
+    }
 }

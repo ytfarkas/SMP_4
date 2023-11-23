@@ -11,6 +11,8 @@ import javafx.scene.control.ToggleGroup;
 
 public class BuildYourOwnController {
 
+    private Order currentOrder;
+
     @FXML
     private ToggleGroup Size;
 
@@ -43,6 +45,11 @@ public class BuildYourOwnController {
 
     @FXML
     private ListView<String> toppingsList;
+
+
+    public void updateOrder(Order order){
+        this.currentOrder = order;
+    }
 
     @FXML
     private void initialize(){
