@@ -25,4 +25,23 @@ public class Pepperoni extends Pizza{
         }
         return price;
     }
+
+    @Override
+    public String toString(){
+
+        String str = "[Pepperoni] Pepperoni " +
+                size.name() + " " + sauce.name() + " ";
+
+        if(extraSauce){
+            str = str + "extra Sauce ";
+        }
+
+        if(extraCheese){
+            str = str + "extra cheese ";
+        }
+
+        str = str + "$" + this.price();
+
+        return str;
+    }
 }

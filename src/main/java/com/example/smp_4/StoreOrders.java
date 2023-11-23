@@ -15,6 +15,7 @@ public class StoreOrders {
         storeOrderList.add(order);
     }
     public int getNextOrderNumber(){
+
         return nextOrderNumber;
     }
     public ArrayList<Order> getStoreOrderList() {

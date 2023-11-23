@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
 
 public class SpecialtyPizzaController {
 
+    private Order currentOrder;
+
     @FXML
     private Button ConfirmPizza;
 
@@ -51,16 +53,20 @@ public class SpecialtyPizzaController {
     private TextField priceBox;
 
 
-@FXML
-private void initialize(){
-    Pizza_Selection.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
-    Pizza_Selection.valueProperty().addListener((observable, oldValue, newValue) -> updatePrice());
-    Size.selectedToggleProperty().addListener((observable, oldValue, newValue) -> updatePrice());
-    extraSauceBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
-    extraCheeseBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
-    Pizza_Selection.setValue("Deluxe");
-    Size.selectToggle(sizeSmall);
-}
+
+    public void updateOrder(Order order){
+        this.currentOrder = order;
+    }
+    @FXML
+    private void initialize(){
+        Pizza_Selection.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
+        Pizza_Selection.valueProperty().addListener((observable, oldValue, newValue) -> updatePrice());
+        Size.selectedToggleProperty().addListener((observable, oldValue, newValue) -> updatePrice());
+        extraSauceBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
+        extraCheeseBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
+        Pizza_Selection.setValue("Deluxe");
+        Size.selectToggle(sizeSmall);
+    }
 
    @FXML
     void confirmButton(ActionEvent event) throws IOException {

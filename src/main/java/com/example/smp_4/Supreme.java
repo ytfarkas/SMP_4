@@ -31,4 +31,23 @@ public class Supreme extends Pizza{
 
         return price;
     }
+
+    @Override
+    public String toString(){
+
+        String str = "[Supreme] Black Olive Onion Green Pepper Pepperoni Ham Sausage Mushroom " +
+               size.name() + " " + sauce.name() + " ";
+
+        if(extraSauce){
+            str = str + "extra Sauce ";
+        }
+
+        if(extraCheese){
+            str = str + "extra cheese ";
+        }
+
+        str = str + "$" + this.price();
+
+        return str;
+    }
 }

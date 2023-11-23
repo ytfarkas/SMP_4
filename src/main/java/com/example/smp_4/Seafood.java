@@ -26,4 +26,23 @@ public class Seafood extends Pizza{
 
         return price;
     }
+
+    @Override
+    public String toString(){
+
+        String sea = "[Seafood] Shrimp Squid Crab Meats "  +
+                size.name() + " " + sauce.name() + " ";;
+
+        if(extraSauce){
+            sea = sea + "extra Sauce ";
+        }
+
+        if(extraCheese){
+            sea = sea + "extra cheese ";
+        }
+
+        sea = sea + this.price();
+
+        return sea;
+    }
 }
