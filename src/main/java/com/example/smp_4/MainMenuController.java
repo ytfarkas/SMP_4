@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +25,33 @@ public class MainMenuController {
 
     @FXML
     private Button storeOrderButton;
+
+    @FXML
+    private ImageView specialtyPizzaImage;
+
+    @FXML
+    private ImageView bYOPizzaImage;
+
+    @FXML
+    private ImageView orderImage;
+
+    @FXML
+    private ImageView storeOrderImage;
+
+
+    @FXML
+    void initialize(){
+
+        Image specialImage = new Image("file:src/main/resources/com/example/smp_4/Specialty_Pizza.jpeg");
+        specialtyPizzaImage.setImage(specialImage);
+        Image buildPizza = new Image("file:src/main/resources/com/example/smp_4/buildPizzaImage.jpeg");
+        bYOPizzaImage.setImage(buildPizza);
+        Image order = new Image("file:src/main/resources/com/example/smp_4/OrderImage.jpeg");
+        orderImage.setImage(order);
+        Image storeOrder = new Image("file:src/main/resources/com/example/smp_4/StoreOrderImage.jpeg");
+        storeOrderImage.setImage(storeOrder);
+
+    }
 
     @FXML
     void specialtyPizzaMenu(ActionEvent event) throws IOException {

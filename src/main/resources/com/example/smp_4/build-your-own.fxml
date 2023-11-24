@@ -9,7 +9,6 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="510.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smp_4.BuildYourOwnController">
    <children>
       <ListView fx:id="toppingsList" layoutX="14.0" layoutY="184.0" prefHeight="254.0" prefWidth="140.0" />
@@ -27,5 +26,6 @@
       <CheckBox fx:id="extraSauceButton" layoutX="256.0" layoutY="113.0" mnemonicParsing="false" text="Extra Sauce" />
       <Button fx:id="addButton" layoutX="178.0" layoutY="255.0" mnemonicParsing="false" onAction="#AddOnPizza" text="Add -&gt;" />
       <Button fx:id="removeButton" layoutX="166.0" layoutY="311.0" mnemonicParsing="false" onAction="#RemoveFromPizza" text="&lt;- Remove" />
+      <Button fx:id="addToOrderButton" layoutX="281.0" layoutY="454.0" mnemonicParsing="false" onAction="#addToOrder" text="Add To Order" />
    </children>
 </AnchorPane>

@@ -66,6 +66,9 @@ public class SpecialtyPizzaController {
         extraCheeseBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
         Pizza_Selection.setValue("Deluxe");
         Size.selectToggle(sizeSmall);
+        toppingsBox.getItems().addAll("Sausage", "Mushroom", "Green Pepper", "Pepperoni", "Onion");
+        sauceBox.setText("Tomato");
+
     }
 
    @FXML
@@ -86,7 +89,7 @@ public class SpecialtyPizzaController {
        FXMLLoader loader = new FXMLLoader((getClass().getResource("current-order.fxml")));
        Parent root = loader.load();
        CurrentOrderController currentOrderController = loader.getController();
-       currentOrderController.addOrderFromController(newOrder);
+               currentOrderController.addOrderFromController(newOrder);
     }
 
 

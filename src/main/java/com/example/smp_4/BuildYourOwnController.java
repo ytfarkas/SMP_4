@@ -46,6 +46,9 @@ public class BuildYourOwnController {
     @FXML
     private ListView<String> toppingsList;
 
+    @FXML
+    private Button addToOrderButton;
+
 
     public void updateOrder(Order order){
         this.currentOrder = order;
@@ -57,6 +60,7 @@ public class BuildYourOwnController {
                 "Green Peppers", "Onion", "Black Olive", "Mushroom", "Artichoke",
                 "Shrimp", "Squid", "Crab Meat");
         sauceBox.getItems().addAll("Tomato", "Alfredo");
+        sauceBox.setValue("Tomato");
 
     }
 
@@ -74,6 +78,11 @@ public class BuildYourOwnController {
             toppingsList.getItems().add(addedToppings.getSelectionModel().getSelectedItem());
             addedToppings.getItems().remove(addedToppings.getSelectionModel().getSelectedItem());
         }
+    }
+    @FXML
+    void addToOrder(ActionEvent event){
+
+
     }
 
 }
