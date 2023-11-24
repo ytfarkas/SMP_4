@@ -11,6 +11,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -52,6 +54,9 @@ public class SpecialtyPizzaController {
     @FXML
     private TextField priceBox;
 
+    @FXML
+    private ImageView pizzaPhoto;
+
 
 
     public void updateOrder(Order order){
@@ -68,6 +73,9 @@ public class SpecialtyPizzaController {
         Size.selectToggle(sizeSmall);
         toppingsBox.getItems().addAll("Sausage", "Mushroom", "Green Pepper", "Pepperoni", "Onion");
         sauceBox.setText("Tomato");
+        Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/deluxePizza.jpeg");
+        pizzaPhoto.setImage(image);
+
 
     }
 
@@ -97,25 +105,32 @@ public class SpecialtyPizzaController {
     @FXML
     void SelectPizza(ActionEvent event) {
     if (Pizza_Selection.getValue().equals("Deluxe")){
+        Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/deluxePizza.jpeg");
+        pizzaPhoto.setImage(image);
         toppingsBox .getItems().clear();
         toppingsBox.getItems().addAll("Sausage", "Mushroom", "Green Pepper", "Pepperoni", "Onion");
         sauceBox.setText("Tomato");
-
     } else if (Pizza_Selection.getValue().equals("Supreme")){
+        Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/supremePizza.jpeg");
+        pizzaPhoto.setImage(image);
         toppingsBox.getItems().clear();
         toppingsBox.getItems().addAll("Sausage", "Pepperoni", "Ham", "Green Pepper", "Onion", "Black Olives", "Mushroom");
         sauceBox.setText("Tomato");
     } else if (Pizza_Selection.getValue().equals("Meatzza")){
+        Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/meatzza.jpeg");
+        pizzaPhoto.setImage(image);
         toppingsBox.getItems().clear();
         toppingsBox.getItems().addAll("Sausage", "Pepperoni", "Beef", "Lamb");
         sauceBox.setText("Tomato");
-
     }else if (Pizza_Selection.getValue().equals("Seafood")){
+        Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/seafoodPizza.jpeg");
+        pizzaPhoto.setImage(image);
         toppingsBox.getItems().clear();
         toppingsBox.getItems().addAll("Shrimp", "Squid", "Crab Meat");
         sauceBox.setText("Alfredo");
-
     }else if (Pizza_Selection.getValue().equals("Pepperoni")){
+        Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/pepperoniPizza.jpeg");
+        pizzaPhoto.setImage(image);
         toppingsBox.getItems().clear();
         toppingsBox.getItems().addAll("Pepperoni");
         sauceBox.setText("Tomato");

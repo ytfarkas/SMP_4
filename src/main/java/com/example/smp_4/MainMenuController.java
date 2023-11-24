@@ -42,13 +42,13 @@ public class MainMenuController {
     @FXML
     void initialize(){
 
-        Image specialImage = new Image("file:src/main/resources/com/example/smp_4/Specialty_Pizza.jpeg");
+        Image specialImage = new Image("file:src/main/resources/com/example/smp_4/Photos/Specialty_Pizza.jpeg");
         specialtyPizzaImage.setImage(specialImage);
-        Image buildPizza = new Image("file:src/main/resources/com/example/smp_4/buildPizzaImage.jpeg");
+        Image buildPizza = new Image("file:src/main/resources/com/example/smp_4/Photos/buildPizzaImage.jpeg");
         bYOPizzaImage.setImage(buildPizza);
-        Image order = new Image("file:src/main/resources/com/example/smp_4/OrderImage.jpeg");
+        Image order = new Image("file:src/main/resources/com/example/smp_4/Photos/OrderImage.jpeg");
         orderImage.setImage(order);
-        Image storeOrder = new Image("file:src/main/resources/com/example/smp_4/StoreOrderImage.jpeg");
+        Image storeOrder = new Image("file:src/main/resources/com/example/smp_4/Photos/StoreOrderImage.jpeg");
         storeOrderImage.setImage(storeOrder);
 
     }

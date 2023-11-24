@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -17,15 +18,17 @@
       <Label layoutX="14.0" layoutY="20.0" prefHeight="25.0" prefWidth="74.0" text="Sauce" />
       <RadioButton fx:id="smallPizza" layoutX="14.0" layoutY="88.0" mnemonicParsing="false" text="Small">
          <toggleGroup>
-            <ToggleGroup fx:id="Size" />
+            <ToggleGroup fx:id="SizeGroup" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="mediumPizza" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" text="Medium" toggleGroup="$Size" />
-      <RadioButton fx:id="largePizza" layoutX="14.0" layoutY="137.0" mnemonicParsing="false" text="Large" toggleGroup="$Size" />
+      <RadioButton fx:id="mediumPizza" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" text="Medium" toggleGroup="$SizeGroup" />
+      <RadioButton fx:id="largePizza" layoutX="14.0" layoutY="137.0" mnemonicParsing="false" text="Large" toggleGroup="$SizeGroup" />
       <CheckBox fx:id="extraCheeseButton" layoutX="256.0" layoutY="137.0" mnemonicParsing="false" text="Extra Cheese" />
       <CheckBox fx:id="extraSauceButton" layoutX="256.0" layoutY="113.0" mnemonicParsing="false" text="Extra Sauce" />
       <Button fx:id="addButton" layoutX="178.0" layoutY="255.0" mnemonicParsing="false" onAction="#AddOnPizza" text="Add -&gt;" />
       <Button fx:id="removeButton" layoutX="166.0" layoutY="311.0" mnemonicParsing="false" onAction="#RemoveFromPizza" text="&lt;- Remove" />
       <Button fx:id="addToOrderButton" layoutX="281.0" layoutY="454.0" mnemonicParsing="false" onAction="#addToOrder" text="Add To Order" />
+      <Label layoutX="26.0" layoutY="459.0" text="Price $" />
+      <TextField fx:id="priceText" editable="false" layoutX="74.0" layoutY="455.0" />
    </children>
 </AnchorPane>

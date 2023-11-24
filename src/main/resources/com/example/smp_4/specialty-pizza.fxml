@@ -8,7 +8,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -16,11 +15,7 @@
    <children>
       <AnchorPane prefHeight="517.0" prefWidth="410.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Specialty_Pizza.jpeg" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="pizzaPhoto" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <ComboBox fx:id="Pizza_Selection" layoutX="229.0" layoutY="38.0" onAction="#SelectPizza" prefWidth="150.0" promptText="Select Pizza" />
             <RadioButton fx:id="sizeSmall" layoutX="229.0" layoutY="71.0" mnemonicParsing="false" text="Small">
                <toggleGroup>
