@@ -70,13 +70,23 @@ public class SpecialtyPizzaController {
 
    @FXML
     void confirmButton(ActionEvent event) throws IOException {
+       Pizza pizza = PizzaMaker.createPizza(Pizza_Selection.getValue());
+       if (Size.getSelectedToggle().equals(sizeSmall)) {
+           pizza.size = com.example.smp_4.Size.SMALL; //? does this work
+       } else if (Size.getSelectedToggle().equals(sizeMedium)) {
+           pizza.size = com.example.smp_4.Size.MEDIUM; //? does this work
+       } else if (Size.getSelectedToggle().equals(sizeLarge)) {
+           pizza.size = com.example.smp_4.Size.LARGE; //? does this work
+       }
+       pizza.extraCheese = extraCheeseBox.isSelected();
+       pizza.extraSauce = extraSauceBox.isSelected();
+       Order newOrder = new Order();
+       newOrder.addToOrder(pizza);
 
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("current-order.fxml")));
-        Parent root = (Parent) loader.load();
-
-        CurrentOrderController currentOrderController = loader.getController();
-        //currentOrderController.addOrder(PizzaMaker.createPizza(Pizza_Selection.getValue()));
-
+       FXMLLoader loader = new FXMLLoader((getClass().getResource("current-order.fxml")));
+       Parent root = loader.load();
+       CurrentOrderController currentOrderController = loader.getController();
+       currentOrderController.addOrderFromController(newOrder);
     }
 
 

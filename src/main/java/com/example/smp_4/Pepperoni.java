@@ -1,9 +1,12 @@
 package com.example.smp_4;
 
+import java.util.ArrayList;
+
 public class Pepperoni extends Pizza{
 
     public Pepperoni(){
-        this.sauce = Sauce.TOMATO;
+        toppings = new ArrayList<Topping>();
+        sauce = Sauce.TOMATO;
         toppings.add(Topping.PEPPERONI);
     }
     @Override

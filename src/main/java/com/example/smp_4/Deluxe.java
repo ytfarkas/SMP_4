@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class Deluxe extends Pizza {
 
     public Deluxe(){
-        this.sauce = Sauce.TOMATO;
+        toppings = new ArrayList<Topping>();
+        sauce = Sauce.TOMATO;
         toppings.add(Topping.SAUSAGE);
         toppings.add(Topping.MUSHROOM);
         toppings.add(Topping.GREEN_PEPPER);
         toppings.add(Topping.PEPPERONI);
         toppings.add(Topping.ONION);
+
     }
 
     @Override

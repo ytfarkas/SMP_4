@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
+
 public class CurrentOrderController {
     private static StoreOrders storeOrders;
     private Order currentOrder;
@@ -31,7 +33,6 @@ public class CurrentOrderController {
     @FXML
     private ListView<String> pizzaList;
 
-
     public static void setStoreOrders(StoreOrders orders){
         storeOrders = orders;
     }
@@ -41,6 +42,26 @@ public class CurrentOrderController {
         setFields();
     }
 
+
+    //Why does this not work broooo
+    @FXML
+    void addOrderFromController(Order order){
+        String orderNumber = String.valueOf((order.getID()));
+        System.out.print(orderNumber);
+        pizzaList.getItems().add(String.valueOf(order));
+       // orderNumberText.setText(orderNumber);
+        orderNumberText.setText("test");
+       /* subtotalText.setText(String.valueOf(order.getSubtotal()));
+        salesTaxText.setText(String.valueOf(order.getSubtotal() * 0.06625));
+        orderTotalText.setText(String.valueOf(order.getTotalPrice()));
+        pizzaList.getItems().clear();
+        for(Pizza pizza : order.getOrderList()){
+            pizzaList.getItems().add(pizza.toString());
+        }*/
+
+
+
+    }
     @FXML
     void setFields(){
         orderNumberText.setText(String.valueOf(storeOrders.getNextOrderNumber()));
