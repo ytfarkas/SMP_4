@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class SpecialtyPizzaController {
 
     private Order currentOrder;
+    private MainMenuController mainMenuController;
 
     @FXML
     private Button ConfirmPizza;
@@ -28,7 +29,7 @@ public class SpecialtyPizzaController {
     private ComboBox<String> Pizza_Selection;
 
     @FXML
-    private ToggleGroup Size;
+    private ToggleGroup SizeGroup;
 
     @FXML
     private CheckBox extraSauceBox;
@@ -58,7 +59,9 @@ public class SpecialtyPizzaController {
     private ImageView pizzaPhoto;
 
 
-
+    public void setMainMenuController(MainMenuController controller){
+        mainMenuController = controller;
+    }
     public void updateOrder(Order order){
         this.currentOrder = order;
     }
@@ -66,11 +69,11 @@ public class SpecialtyPizzaController {
     private void initialize(){
         Pizza_Selection.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         Pizza_Selection.valueProperty().addListener((observable, oldValue, newValue) -> updatePrice());
-        Size.selectedToggleProperty().addListener((observable, oldValue, newValue) -> updatePrice());
+        SizeGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> updatePrice());
         extraSauceBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
         extraCheeseBox.selectedProperty().addListener((observable, oldValue,newValue ) -> updatePrice());
         Pizza_Selection.setValue("Deluxe");
-        Size.selectToggle(sizeSmall);
+        SizeGroup.selectToggle(sizeSmall);
         toppingsBox.getItems().addAll("Sausage", "Mushroom", "Green Pepper", "Pepperoni", "Onion");
         sauceBox.setText("Tomato");
         Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/deluxePizza.jpeg");
@@ -82,22 +85,16 @@ public class SpecialtyPizzaController {
    @FXML
     void confirmButton(ActionEvent event) throws IOException {
        Pizza pizza = PizzaMaker.createPizza(Pizza_Selection.getValue());
-       if (Size.getSelectedToggle().equals(sizeSmall)) {
-           pizza.size = com.example.smp_4.Size.SMALL; //? does this work
-       } else if (Size.getSelectedToggle().equals(sizeMedium)) {
-           pizza.size = com.example.smp_4.Size.MEDIUM; //? does this work
-       } else if (Size.getSelectedToggle().equals(sizeLarge)) {
-           pizza.size = com.example.smp_4.Size.LARGE; //? does this work
+       if (sizeSmall.isSelected()) {
+           pizza.size = Size.SMALL; //? does this work
+       } else if (sizeMedium.isSelected()) {
+           pizza.size = Size.MEDIUM; //? does this work
+       } else if (sizeLarge.isSelected()) {
+           pizza.size = Size.LARGE; //? does this work
        }
        pizza.extraCheese = extraCheeseBox.isSelected();
        pizza.extraSauce = extraSauceBox.isSelected();
-       Order newOrder = new Order();
-       newOrder.addToOrder(pizza);
-
-       FXMLLoader loader = new FXMLLoader((getClass().getResource("current-order.fxml")));
-       Parent root = loader.load();
-       CurrentOrderController currentOrderController = loader.getController();
-               currentOrderController.addOrderFromController(newOrder);
+       mainMenuController.addToCurrentOrder(pizza);
     }
 
 
@@ -110,6 +107,7 @@ public class SpecialtyPizzaController {
         toppingsBox .getItems().clear();
         toppingsBox.getItems().addAll("Sausage", "Mushroom", "Green Pepper", "Pepperoni", "Onion");
         sauceBox.setText("Tomato");
+
     } else if (Pizza_Selection.getValue().equals("Supreme")){
         Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/supremePizza.jpeg");
         pizzaPhoto.setImage(image);
@@ -122,12 +120,14 @@ public class SpecialtyPizzaController {
         toppingsBox.getItems().clear();
         toppingsBox.getItems().addAll("Sausage", "Pepperoni", "Beef", "Lamb");
         sauceBox.setText("Tomato");
+
     }else if (Pizza_Selection.getValue().equals("Seafood")){
         Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/seafoodPizza.jpeg");
         pizzaPhoto.setImage(image);
         toppingsBox.getItems().clear();
         toppingsBox.getItems().addAll("Shrimp", "Squid", "Crab Meat");
         sauceBox.setText("Alfredo");
+
     }else if (Pizza_Selection.getValue().equals("Pepperoni")){
         Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/pepperoniPizza.jpeg");
         pizzaPhoto.setImage(image);
@@ -167,10 +167,5 @@ public class SpecialtyPizzaController {
         priceBox.setText(String.valueOf(rounded));
     }
 
-
-   @FXML
-    void PizzaSize(ActionEvent event) {
-
-    }
 
 }

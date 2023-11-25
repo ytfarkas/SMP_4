@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 
 public class StoreOrderController {
     private static StoreOrders storeOrders;
+    private MainMenuController mainMenuController;
+
    @FXML
     private Button cancelOrderButton;
 
@@ -30,6 +32,13 @@ public class StoreOrderController {
     public static void setStoreOrders(StoreOrders orders){
         storeOrders = orders;
     }
+    public void setMainMenuController(MainMenuController controller){
+        mainMenuController = controller;
+    }
+    @FXML
+    void initialize(){
+        addOrderDropdownListener();
+    }
     @FXML
     void updateOrderDropdown(){
         for(Order order : storeOrders.getStoreOrderList()){
@@ -45,7 +54,6 @@ public class StoreOrderController {
                 storeOrders.getStoreOrderList().remove(order);
             }
         }
-        PizzaStoreApplication.updatesStoreOrders(storeOrders);
         updateOrderDropdown();
     }
 

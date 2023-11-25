@@ -15,8 +15,12 @@ public class StoreOrders {
         storeOrderList.add(order);
     }
     public int getNextOrderNumber(){
-
-        return nextOrderNumber;
+        int num = nextOrderNumber;
+        nextOrderNumber += 1;
+        return num;
+    }
+    public int getCurrentOrderNumber(){
+        return  nextOrderNumber - 1;
     }
     public ArrayList<Order> getStoreOrderList() {
         return storeOrderList;

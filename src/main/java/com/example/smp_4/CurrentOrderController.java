@@ -5,12 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
 
 import java.util.ArrayList;
 
 public class CurrentOrderController {
-    private static StoreOrders storeOrders;
+    private StoreOrders storeOrders;
     private Order currentOrder;
+    private MainMenuController mainMenuController;
 
     @FXML
     private TextField orderNumberText;
@@ -33,41 +35,29 @@ public class CurrentOrderController {
     @FXML
     private ListView<String> pizzaList;
 
-    public static void setStoreOrders(StoreOrders orders){
-        storeOrders = orders;
+    public void setMainMenuController(MainMenuController controller){
+        mainMenuController = controller;
     }
 
-    public void updateOrder(Order order){
-        this.currentOrder = order;
+    public void addToCurrentOrder(Pizza pizza){
+        currentOrder.addToOrder(pizza);
         setFields();
     }
 
-
-    //Why does this not work broooo
     @FXML
-    void addOrderFromController(Order order){
-        String orderNumber = String.valueOf((order.getID()));
-        System.out.print(orderNumber);
-        pizzaList.getItems().add(String.valueOf(order));
-       // orderNumberText.setText(orderNumber);
-        orderNumberText.setText("test");
-       /* subtotalText.setText(String.valueOf(order.getSubtotal()));
-        salesTaxText.setText(String.valueOf(order.getSubtotal() * 0.06625));
-        orderTotalText.setText(String.valueOf(order.getTotalPrice()));
-        pizzaList.getItems().clear();
-        for(Pizza pizza : order.getOrderList()){
-            pizzaList.getItems().add(pizza.toString());
-        }*/
-
-
-
+    void initialize(){
+        storeOrders = new StoreOrders();
+        currentOrder = new Order(storeOrders.getNextOrderNumber(), new ArrayList<Pizza>());
     }
+
     @FXML
     void setFields(){
-        orderNumberText.setText(String.valueOf(storeOrders.getNextOrderNumber()));
-        subtotalText.setText(String.valueOf(currentOrder.getSubtotal()));
-        salesTaxText.setText(String.valueOf(currentOrder.getSubtotal() * 0.06625));
-        orderTotalText.setText(String.valueOf(currentOrder.getTotalPrice()));
+        currentOrder = mainMenuController.getCurrentOrder();
+        storeOrders = mainMenuController.getStoreOrders();
+        orderNumberText.setText(String.valueOf(storeOrders.getCurrentOrderNumber()));
+        subtotalText.setText(String.format("%,.2f", currentOrder.getSubtotal()));
+        salesTaxText.setText(String.format("%,.2f", currentOrder.getSubtotal() * 0.06625));
+        orderTotalText.setText(String.format("%,.2f", currentOrder.getTotalPrice()));
         pizzaList.getItems().clear();
         for(Pizza pizza : currentOrder.getOrderList()){
             pizzaList.getItems().add(pizza.toString());
@@ -77,9 +67,9 @@ public class CurrentOrderController {
     void removePizza(ActionEvent event) {
         if (!pizzaList.getItems().isEmpty() && pizzaList.getSelectionModel().getSelectedItem() != null){
             pizzaList.getItems().remove(pizzaList.getSelectionModel().getSelectedItem());
-            currentOrder.removePizza(pizzaList.getSelectionModel().getSelectedIndex());
+            mainMenuController.removePizzaFromOrder(pizzaList.getSelectionModel().getSelectedIndex());
         }
-
+        setFields();
     }
     @FXML
     void clearFields(){
@@ -90,15 +80,16 @@ public class CurrentOrderController {
         pizzaList.getItems().clear();
     }
 
-    /*public void addOrder(Pizza pizzaType){
-        pizzaList.getItems().add(pizzaType);
-    }*/
-
     @FXML
     void placeOrder(ActionEvent event) {
-        storeOrders.addOrder(currentOrder);
-        clearFields();
-        PizzaStoreApplication.updatesStoreOrders(storeOrders);
+        if(currentOrder.getTotalPrice() == 0){
+            //display error message telling user to please add items to the order first
+            return;
+        }
+        //storeOrders.addOrder(currentOrder);
+        mainMenuController.addToStoreOrders();
+        mainMenuController.newOrder();
+        setFields();
     }
 
 }

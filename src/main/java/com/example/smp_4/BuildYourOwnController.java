@@ -9,6 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 public class BuildYourOwnController {
 
     private Order currentOrder;
+    private MainMenuController mainMenuController;
 
     @FXML
     private ToggleGroup SizeGroup;
@@ -49,7 +50,9 @@ public class BuildYourOwnController {
     @FXML
     public TextField priceText;
 
-
+    public void setMainMenuController(MainMenuController controller){
+        mainMenuController = controller;
+    }
     public void updateOrder(Order order){
         this.currentOrder = order;
     }
