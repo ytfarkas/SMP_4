@@ -8,19 +8,16 @@ public class StoreOrders {
 
     public StoreOrders(){
         storeOrderList = new ArrayList<Order>();
-        nextOrderNumber = 0;
+        nextOrderNumber = 1;
     }
 
     public void addOrder(Order order){
         storeOrderList.add(order);
+        nextOrderNumber++;
     }
-    public int getNextOrderNumber(){
-        int num = nextOrderNumber;
-        nextOrderNumber += 1;
-        return num;
-    }
+
     public int getCurrentOrderNumber(){
-        return  nextOrderNumber - 1;
+        return  nextOrderNumber;
     }
     public ArrayList<Order> getStoreOrderList() {
         return storeOrderList;

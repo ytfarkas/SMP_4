@@ -2,6 +2,7 @@ package com.example.smp_4;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -47,14 +48,14 @@ public class CurrentOrderController {
     @FXML
     void initialize(){
         storeOrders = new StoreOrders();
-        currentOrder = new Order(storeOrders.getNextOrderNumber(), new ArrayList<Pizza>());
+        currentOrder = new Order(storeOrders.getCurrentOrderNumber(), new ArrayList<Pizza>());
     }
 
     @FXML
     void setFields(){
         currentOrder = mainMenuController.getCurrentOrder();
         storeOrders = mainMenuController.getStoreOrders();
-        orderNumberText.setText(String.valueOf(storeOrders.getCurrentOrderNumber()));
+        orderNumberText.setText(String.valueOf(currentOrder.getID()));
         subtotalText.setText(String.format("%,.2f", currentOrder.getSubtotal()));
         salesTaxText.setText(String.format("%,.2f", currentOrder.getSubtotal() * 0.06625));
         orderTotalText.setText(String.format("%,.2f", currentOrder.getTotalPrice()));
@@ -86,10 +87,16 @@ public class CurrentOrderController {
             //display error message telling user to please add items to the order first
             return;
         }
-        //storeOrders.addOrder(currentOrder);
         mainMenuController.addToStoreOrders();
-        mainMenuController.newOrder();
         setFields();
+        displayOrderPlacedAlert();
+    }
+
+    @FXML
+    void displayOrderPlacedAlert(){
+        Alert added = new Alert(Alert.AlertType.INFORMATION);
+        added.setContentText("Order Placed!");
+        added.showAndWait();
     }
 
 }

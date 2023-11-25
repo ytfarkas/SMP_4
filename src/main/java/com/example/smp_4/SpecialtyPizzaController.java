@@ -13,7 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
@@ -78,8 +80,16 @@ public class SpecialtyPizzaController {
         sauceBox.setText("Tomato");
         Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/deluxePizza.jpeg");
         pizzaPhoto.setImage(image);
-
-
+    }
+    @FXML
+    void reInitialize(){
+        Pizza_Selection.setValue("Deluxe");
+        SizeGroup.selectToggle(sizeSmall);
+        sauceBox.setText("Tomato");
+        Image image = new Image("file:src/main/resources/com/example/smp_4/Photos/deluxePizza.jpeg");
+        pizzaPhoto.setImage(image);
+        extraCheeseBox.setSelected(false);
+        extraSauceBox.setSelected(false);
     }
 
    @FXML
@@ -95,6 +105,15 @@ public class SpecialtyPizzaController {
        pizza.extraCheese = extraCheeseBox.isSelected();
        pizza.extraSauce = extraSauceBox.isSelected();
        mainMenuController.addToCurrentOrder(pizza);
+       reInitialize();
+       displayAddedAlert();
+    }
+
+    @FXML
+    void displayAddedAlert(){
+        Alert added = new Alert(AlertType.INFORMATION);
+        added.setContentText("Added to order!");
+        added.showAndWait();
     }
 
 
