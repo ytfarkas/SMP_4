@@ -55,11 +55,13 @@ public class MainMenuController {
         currentOrder.addToOrder(pizza);
     }
     public void addToStoreOrders(){
+        System.out.println(currentOrder.getID());
         storeOrders.addOrder(currentOrder);
+        currentOrder = new Order(storeOrders.getCurrentOrderNumber(), new ArrayList<Pizza>());
+        System.out.println(currentOrder.getID());
+        storeOrderController.setStoreOrders();
     }
-    public void newOrder(){
-        currentOrder = new Order(storeOrders.getNextOrderNumber(), new ArrayList<Pizza>());
-    }
+
     public StoreOrders getStoreOrders(){
         return storeOrders;
     }
@@ -68,6 +70,9 @@ public class MainMenuController {
     }
     public void removePizzaFromOrder(int index){
         currentOrder.removePizza(index);
+    }
+    public void cancelOrder(int index){
+
     }
     @FXML
     void initialize(){
@@ -79,22 +84,25 @@ public class MainMenuController {
         orderImage.setImage(order);
         Image storeOrder = new Image("file:src/main/resources/com/example/smp_4/Photos/StoreOrderImage.jpeg");
         storeOrderImage.setImage(storeOrder);
+
+        storeOrders = new StoreOrders();
+        currentOrder = new Order(storeOrders.getCurrentOrderNumber(), new ArrayList<Pizza>());
        try {
            initializeSpecialtyMenu();
            initializeCurrentOrder();
-           initializeBuildYourOwn();
            initializeStoreOrders();
-       }catch (IOException m){
+           initializeBuildYourOwn();
 
+       }catch (IOException m){
+           System.out.println("Stage Initialization error");
+           m.printStackTrace();
        }
-       storeOrders = new StoreOrders();
-       currentOrder = new Order(storeOrders.getNextOrderNumber(), new ArrayList<Pizza>());
     }
     @FXML
     void initializeSpecialtyMenu() throws IOException{
+        specialtyPizzaStage = new Stage();
         FXMLLoader SpecialtyPizzaMenu = new FXMLLoader(getClass().getResource("specialty-pizza.fxml"));
         Parent specialtyPizzaParent = SpecialtyPizzaMenu.load();
-        specialtyPizzaStage = new Stage();
         specialtyPizzaStage.setScene(new Scene(specialtyPizzaParent));
         specialtyPizzaStage.setTitle("Specialty Pizza Menu");
         specialtyPizzaController = SpecialtyPizzaMenu.getController();
@@ -103,9 +111,9 @@ public class MainMenuController {
 
     @FXML
     void initializeCurrentOrder() throws IOException{
+        currentOrderStage = new Stage();
         FXMLLoader currentOrderMenu = new FXMLLoader(getClass().getResource("current-order.fxml"));
         Parent currentOrderParent = currentOrderMenu.load();
-        currentOrderStage = new Stage();
         currentOrderStage.setScene(new Scene(currentOrderParent));
         currentOrderStage.setTitle("Current Order");
         currentOrderController = currentOrderMenu.getController();
@@ -113,9 +121,9 @@ public class MainMenuController {
     }
     @FXML
     void initializeBuildYourOwn() throws IOException{
+        buildYourOwnStage = new Stage();
         FXMLLoader buildPizzaMenu = new FXMLLoader(getClass().getResource("build-your-own.fxml"));
         Parent root = buildPizzaMenu.load();
-        buildYourOwnStage = new Stage();
         buildYourOwnStage.setScene(new Scene(root));
         buildYourOwnStage.setTitle("Build Your Own Pizza");
         buildYourOwnController = buildPizzaMenu.getController();
@@ -123,9 +131,9 @@ public class MainMenuController {
     }
     @FXML
     void initializeStoreOrders() throws IOException{
+        storeOrdersStage = new Stage();
         FXMLLoader storeOrderMenu = new FXMLLoader(getClass().getResource("store-order.fxml"));
         Parent root = storeOrderMenu.load();
-        storeOrdersStage = new Stage();
         storeOrdersStage.setScene(new Scene(root));
         storeOrdersStage.setTitle("Store Orders");
         storeOrderController = storeOrderMenu.getController();
