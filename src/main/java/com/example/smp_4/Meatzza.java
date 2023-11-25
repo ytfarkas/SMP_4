@@ -44,7 +44,7 @@ public class Meatzza extends Pizza{
             str = str + "extra cheese ";
         }
 
-        str = str + "$" + this.price();
+        str = str + "$" + (String.format("%,.2f", this.price()));
 
         return str;
     }

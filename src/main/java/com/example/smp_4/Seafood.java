@@ -44,7 +44,7 @@ public class Seafood extends Pizza{
             sea = sea + "extra cheese ";
         }
 
-        sea = sea + this.price();
+        sea = sea + (String.format("%,.2f", this.price()));
 
         return sea;
     }
