@@ -67,8 +67,8 @@ public class CurrentOrderController {
     @FXML
     void removePizza(ActionEvent event) {
         if (!pizzaList.getItems().isEmpty() && pizzaList.getSelectionModel().getSelectedItem() != null){
-            pizzaList.getItems().remove(pizzaList.getSelectionModel().getSelectedItem());
             mainMenuController.removePizzaFromOrder(pizzaList.getSelectionModel().getSelectedIndex());
+            pizzaList.getItems().remove(pizzaList.getSelectionModel().getSelectedItem());
         }
         setFields();
     }
