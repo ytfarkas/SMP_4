@@ -45,6 +45,10 @@ public class CurrentOrderController {
         setFields();
     }
 
+    public void resetFields(){
+        setFields();
+    }
+
     @FXML
     void initialize(){
         storeOrders = new StoreOrders();

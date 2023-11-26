@@ -29,4 +29,33 @@ public class BuildYourOwn extends Pizza{
         }
         return price;
     }
+
+    @Override
+    public String toString(){
+
+        String tpngs ="";
+        for(Topping t : toppings){
+            if(t.name().contains("_")){
+                tpngs = tpngs + t.name().replace("_", " ") + " ";
+            }
+            else {
+                tpngs = tpngs + t.name() + " ";
+            }
+        }
+
+        String str = "[BuildYourOwn] " + tpngs +
+                size.name() + " " + sauce.name() + " ";
+
+        if(extraSauce){
+            str = str + "extra Sauce ";
+        }
+
+        if(extraCheese){
+            str = str + "extra cheese ";
+        }
+
+        str = str + "$" + (String.format("%,.2f", this.price()));
+
+        return str;
+    }
 }

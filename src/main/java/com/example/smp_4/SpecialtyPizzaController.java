@@ -96,11 +96,11 @@ public class SpecialtyPizzaController {
     void confirmButton(ActionEvent event) throws IOException {
        Pizza pizza = PizzaMaker.createPizza(Pizza_Selection.getValue());
        if (sizeSmall.isSelected()) {
-           pizza.size = Size.SMALL; //? does this work
+           pizza.size = Size.SMALL;
        } else if (sizeMedium.isSelected()) {
-           pizza.size = Size.MEDIUM; //? does this work
+           pizza.size = Size.MEDIUM;
        } else if (sizeLarge.isSelected()) {
-           pizza.size = Size.LARGE; //? does this work
+           pizza.size = Size.LARGE;
        }
        pizza.extraCheese = extraCheeseBox.isSelected();
        pizza.extraSauce = extraSauceBox.isSelected();

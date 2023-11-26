@@ -16,6 +16,15 @@ public class StoreOrders {
         nextOrderNumber++;
     }
 
+    public void cancelOrder(int id){
+        for(Order order : storeOrderList){
+            if(order.getID() == id){
+                storeOrderList.remove(order);
+                return;
+            }
+        }
+    }
+
     public int getCurrentOrderNumber(){
         return  nextOrderNumber;
     }

@@ -36,53 +36,79 @@ public class StoreOrderController {
     public void setStoreOrders(){
         storeOrders = mainMenuController.getStoreOrders();
         orderDropdown.getItems().clear();
-        updateOrderDropdown();
     }
     public void setMainMenuController(MainMenuController controller){
         mainMenuController = controller;
     }
+    public void resetChoiceSelection(){
+        resetOrderChoice();
+    }
+
     @FXML
     void initialize(){
-        /*storeOrders = new StoreOrders();
-        storeOrders.addOrder(new Order(storeOrders.getCurrentOrderNumber(), new ArrayList<Pizza>()));*/
         addOrderDropdownListener();
+    }
+
+    @FXML
+    void resetOrderChoice(){
+        orderDropdown.setValue(null);
+        orderItems.getItems().clear();
+        orderTotal.setText(null);
+        updateOrderDropdown();
     }
     @FXML
     void updateOrderDropdown(){
+        setStoreOrders();
+        orderDropdown.getItems().clear();
         for(Order order : storeOrders.getStoreOrderList()){
             orderDropdown.getItems().add(order.getID());
         }
     }
     @FXML
     void cancelOrder(ActionEvent event){
-        int orderNum = (int) orderDropdown.getValue();
-        mainMenuController.cancelOrder(orderNum);
-        for(Order order : storeOrders.getStoreOrderList()){
-            if(order.getID() == orderNum){
-                storeOrders.getStoreOrderList().remove(order);
-            }
+        try {
+            int id = (int) orderDropdown.getValue();
+            mainMenuController.cancelOrder(id);
+            setStoreOrders();
+            displayOrderCancelled();
+            resetOrderChoice();
         }
-        updateOrderDropdown();
+        catch (NullPointerException e){
+            displayCancelError();
+        }
+    }
+    void displayOrderCancelled(){
+        Alert added = new Alert(Alert.AlertType.INFORMATION);
+        added.setContentText("Order Cancelled!");
+        added.showAndWait();
+    }
+
+    @FXML
+    void displayCancelError(){
+        Alert added = new Alert(Alert.AlertType.ERROR);
+        added.setContentText("Please select a order to cancel.");
+        added.showAndWait();
     }
 
     @FXML
     void addOrderDropdownListener(){
         orderDropdown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                    if(orderDropdown.getValue() == null){
-                        return;
+            if(orderDropdown.getValue() == null){
+                return;
+            }
+            int orderNum = orderDropdown.getValue();
+            for(Order order : storeOrders.getStoreOrderList()){
+                if(order.getID() == orderNum){
+                    orderItems.getItems().clear();
+                    orderTotal.setText(String.format("%,.2f", order.getTotalPrice()));
+                    for(Pizza pizza : order.getOrderList()){
+                        orderItems.getItems().add(pizza.toString());
                     }
-                    int orderNum = orderDropdown.getValue();
-                    for(Order order : storeOrders.getStoreOrderList()){
-                        if(order.getID() == orderNum){
-                            orderItems.getItems().clear();
-                            orderTotal.setText(String.format("%,.2f", order.getTotalPrice()));
-                            for(Pizza pizza : order.getOrderList()){
-                                orderItems.getItems().add(pizza.toString());
-                            }
-                        }
-                    }
+                }
+            }
                 });
     }
+
     @FXML
     void ExportStoreOrder(ActionEvent event){
             try (PrintWriter output = new PrintWriter(new FileWriter("src/main/java/com/example/smp_4/output.txt"))) {
