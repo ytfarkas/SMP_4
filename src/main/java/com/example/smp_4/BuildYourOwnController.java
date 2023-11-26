@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+import java.util.ArrayList;
+
 public class BuildYourOwnController {
 
     private Order currentOrder;
@@ -122,8 +124,7 @@ public class BuildYourOwnController {
     }
     @FXML
     void addToOrder(ActionEvent event){
-        //insert add to order code here
-
+        //check for null and incorrect values first before doing code
         if (SizeGroup.getSelectedToggle() == null){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Select size");
@@ -136,16 +137,36 @@ public class BuildYourOwnController {
             alert.setHeaderText(null);
             alert.setContentText("Minimum Amount of toppings are 3");
             alert.showAndWait();
-        } else {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Added to Cart");
-            alert.setHeaderText(null);
-            alert.setContentText("Order Added to cart");
-            alert.showAndWait();
-            clearField();
         }
+        Pizza buildPizza = PizzaMaker.createPizza("");
+
+        ArrayList<Topping> tops = createToppingList();
+        buildPizza.toppings = tops;
+        buildPizza.sauce = Sauce.valueOf(sauceBox.getValue());
+        buildPizza.extraSauce = extraSauceButton.isSelected();
+        buildPizza.extraCheese = extraCheeseButton.isSelected();
+        displayOrderPlaced();
     }
 
+    private ArrayList<Topping> createToppingList(){
+        ArrayList<Topping> tpngs = new ArrayList<Topping>();
+        for(String t : addedToppings.getItems()){
+            tpngs.add(Topping.valueOf(t));
+        }
+        return tpngs;
+    }
+
+    @FXML
+    void displayOrderPlaced(){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Added to Cart");
+        alert.setHeaderText(null);
+        alert.setContentText("Order Added to cart");
+        alert.showAndWait();
+        clearField();
+    }
+
+    @FXML
     void clearField(){
         toppingsList.getItems().clear();
         sauceBox.getItems().clear();
