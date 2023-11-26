@@ -6,12 +6,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ListView;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -89,23 +85,24 @@ public class StoreOrderController {
     }
     @FXML
     void ExportStoreOrder(ActionEvent event){
-        try(PrintWriter output = new PrintWriter(new FileWriter("src/main/java/com/example/smp_4/output.txt"))){
-            for(Order order : storeOrders.getStoreOrderList()){
-                for(Pizza pizza : order.getOrderList()) {
-                    output.print("Order # " + order.getID());
-                    output.println(pizza.toString());
+            try (PrintWriter output = new PrintWriter(new FileWriter("src/main/java/com/example/smp_4/output.txt"))) {
+                for (Order order : storeOrders.getStoreOrderList()) {
+                    for (Pizza pizza : order.getOrderList()) {
+                        output.print("Order # " + order.getID() + " ");
+                        output.println(pizza.toString());
+                    }
                 }
+                output.flush();
             }
-            output.flush();
-
-        }catch (IOException e){
-            e.printStackTrace();
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            catch (NullPointerException e){
+                    Alert nullStoreOrder = new Alert(Alert.AlertType.ERROR);
+                    nullStoreOrder.setContentText("There are no store orders to be printed!");
+                    nullStoreOrder.showAndWait();
+                }
         }
 
 
     }
-
-
-
-
-}
