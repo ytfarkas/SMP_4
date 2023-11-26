@@ -62,7 +62,7 @@ public class BuildYourOwnController {
     @FXML
     private void initialize(){
         toppingsList.getItems().addAll("Sausage", "Pepperoni", "Ham", "Beef", "Beyond Beef",
-                "Green Peppers", "Onion", "Black Olive", "Mushroom", "Artichoke",
+                "Green Pepper", "Onion", "Black Olive", "Mushroom", "Artichoke",
                 "Shrimp", "Squid", "Crab Meat");
         sauceBox.getItems().addAll("Tomato", "Alfredo");
         sauceBox.setValue("Tomato");
@@ -131,18 +131,27 @@ public class BuildYourOwnController {
             alert.setHeaderText(null);
             alert.setContentText("Please Select Size");
             alert.showAndWait();
+            return;
         } else if (addedToppings.getItems().size() < 3){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Add More Toppings");
             alert.setHeaderText(null);
             alert.setContentText("Minimum Amount of toppings are 3");
             alert.showAndWait();
+            return;
         }
         Pizza buildPizza = PizzaMaker.createPizza("");
 
         ArrayList<Topping> tops = createToppingList();
         buildPizza.toppings = tops;
-        buildPizza.sauce = Sauce.valueOf(sauceBox.getValue());
+        if (smallPizza.isSelected()) {
+            buildPizza.size = Size.SMALL; //? does this work
+        } else if (mediumPizza.isSelected()) {
+            buildPizza.size = Size.MEDIUM; //? does this work
+        } else if (largePizza.isSelected()) {
+            buildPizza.size = Size.LARGE; //? does this work
+        }
+        buildPizza.sauce = Sauce.valueOf(sauceBox.getValue().toUpperCase());
         buildPizza.extraSauce = extraSauceButton.isSelected();
         buildPizza.extraCheese = extraCheeseButton.isSelected();
         mainMenuController.addToCurrentOrder(buildPizza);
@@ -153,7 +162,12 @@ public class BuildYourOwnController {
     private ArrayList<Topping> createToppingList(){
         ArrayList<Topping> tpngs = new ArrayList<Topping>();
         for(String t : addedToppings.getItems()){
-            tpngs.add(Topping.valueOf(t.toUpperCase()));
+            if(t.contains(" ")){
+                tpngs.add(Topping.valueOf(t.toUpperCase().replace(" ", "_")));
+
+            }else {
+                tpngs.add(Topping.valueOf(t.toUpperCase()));
+            }
         }
         return tpngs;
     }
@@ -177,7 +191,7 @@ public class BuildYourOwnController {
         extraCheeseButton.setSelected(false);
         extraSauceButton.setSelected(false);
         toppingsList.getItems().addAll("Sausage", "Pepperoni", "Ham", "Beef", "Beyond Beef",
-                "Green Peppers", "Onion", "Black Olive", "Mushroom", "Artichoke",
+                "Green Pepper", "Onion", "Black Olive", "Mushroom", "Artichoke",
                 "Shrimp", "Squid", "Crab Meat");
         sauceBox.getItems().addAll("Tomato", "Alfredo");
         sauceBox.setValue("Tomato");

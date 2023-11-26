@@ -55,10 +55,8 @@ public class MainMenuController {
         currentOrder.addToOrder(pizza);
     }
     public void addToStoreOrders(){
-        System.out.println(currentOrder.getID());
         storeOrders.addOrder(currentOrder);
         currentOrder = new Order(storeOrders.getCurrentOrderNumber(), new ArrayList<Pizza>());
-        System.out.println(currentOrder.getID());
         storeOrderController.setStoreOrders();
     }
 
@@ -71,8 +69,8 @@ public class MainMenuController {
     public void removePizzaFromOrder(int index){
         currentOrder.removePizza(index);
     }
-    public void cancelOrder(int index){
-
+    public void cancelOrder(int id){
+        storeOrders.cancelOrder(id);
     }
     @FXML
     void initialize(){
@@ -94,8 +92,8 @@ public class MainMenuController {
            initializeBuildYourOwn();
 
        }catch (IOException m){
-           System.out.println("Stage Initialization error");
-           m.printStackTrace();
+          // System.out.println("Stage Initialization error");
+           //what should be done here
        }
     }
     @FXML
@@ -138,6 +136,7 @@ public class MainMenuController {
         storeOrdersStage.setTitle("Store Orders");
         storeOrderController = storeOrderMenu.getController();
         storeOrderController.setMainMenuController(this);
+        storeOrderController.resetChoiceSelection();
     }
     @FXML
     void specialtyPizzaMenu(ActionEvent event) throws IOException {
@@ -152,12 +151,14 @@ public class MainMenuController {
     @FXML
     void yourOrder(ActionEvent event) throws IOException {
         currentOrderStage.show();
-        currentOrderController.setFields();
+        currentOrderController.resetFields();
     }
 
     @FXML
     void storeOrder(ActionEvent event) throws IOException{
         storeOrdersStage.show();
+        storeOrderController.setStoreOrders();
+        storeOrderController.resetChoiceSelection();
     }
 
     }
