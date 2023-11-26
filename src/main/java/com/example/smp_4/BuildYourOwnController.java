@@ -145,13 +145,15 @@ public class BuildYourOwnController {
         buildPizza.sauce = Sauce.valueOf(sauceBox.getValue());
         buildPizza.extraSauce = extraSauceButton.isSelected();
         buildPizza.extraCheese = extraCheeseButton.isSelected();
+        mainMenuController.addToCurrentOrder(buildPizza);
         displayOrderPlaced();
+        clearField();
     }
 
     private ArrayList<Topping> createToppingList(){
         ArrayList<Topping> tpngs = new ArrayList<Topping>();
         for(String t : addedToppings.getItems()){
-            tpngs.add(Topping.valueOf(t));
+            tpngs.add(Topping.valueOf(t.toUpperCase()));
         }
         return tpngs;
     }
