@@ -153,7 +153,7 @@ public class BuildYourOwnController {
     private ArrayList<Topping> createToppingList(){
         ArrayList<Topping> tpngs = new ArrayList<Topping>();
         for(String t : addedToppings.getItems()){
-            tpngs.add(Topping.valueOf(t));
+            tpngs.add(Topping.valueOf(t.toUpperCase()));
         }
         return tpngs;
     }
