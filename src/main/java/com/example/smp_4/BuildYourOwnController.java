@@ -146,8 +146,8 @@ public class BuildYourOwnController {
         buildPizza.extraSauce = extraSauceButton.isSelected();
         buildPizza.extraCheese = extraCheeseButton.isSelected();
         mainMenuController.addToCurrentOrder(buildPizza);
-        clearField();
         displayOrderPlaced();
+        clearField();
     }
 
     private ArrayList<Topping> createToppingList(){
