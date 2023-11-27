@@ -30,7 +30,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Button fx:id="buildPizzaButton" contentDisplay="TOP" layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#buildPizza" prefHeight="200.0" prefWidth="293.0" text="Buiild Your Own Pizza">
+                  <Button fx:id="buildPizzaButton" contentDisplay="TOP" layoutX="4.0" layoutY="2.0" mnemonicParsing="false" onAction="#buildPizza" prefHeight="200.0" prefWidth="293.0" text="Build Your Own Pizza">
                      <graphic>
                         <ImageView fx:id="bYOPizzaImage" fitHeight="153.0" fitWidth="263.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
