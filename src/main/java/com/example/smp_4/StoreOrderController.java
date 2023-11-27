@@ -174,6 +174,7 @@ public class StoreOrderController {
                             output.print("Order # " + order.getID() + " ");
                             output.println(pizza.toString());
                         }
+                        output.println("Order " + order.getID() + " total Price: " + String.format("%,.2f", order.getTotalPrice()));
                     }
                     output.flush();
                 } catch (IOException e) {
