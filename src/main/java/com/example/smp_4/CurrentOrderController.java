@@ -36,27 +36,46 @@ public class CurrentOrderController {
     @FXML
     private ListView<String> pizzaList;
 
-    public void setMainMenuController(MainMenuController controller){
+    /**
+     * setMainMenuController connects the MainMenuController and BuildYourOwnController
+     *
+     * @param controller MainMenuController
+     */
+    public void setMainMenuController(MainMenuController controller) {
         mainMenuController = controller;
     }
 
-    public void addToCurrentOrder(Pizza pizza){
+    /**
+     * addToCurrentOrder adds the pizza to the current order
+     *
+     * @param pizza pizza
+     */
+    public void addToCurrentOrder(Pizza pizza) {
         currentOrder.addToOrder(pizza);
         setFields();
     }
 
-    public void resetFields(){
+    /**
+     * resetFields resets all fields of the current order
+     */
+    public void resetFields() {
         setFields();
     }
 
+    /**
+     * initialize initializes the storeOrder and currentOrder
+     */
     @FXML
-    void initialize(){
+    void initialize() {
         storeOrders = new StoreOrders();
         currentOrder = new Order(storeOrders.getCurrentOrderNumber(), new ArrayList<Pizza>());
     }
 
+    /**
+     * setFields sets the fields of the current order. this takes in the order and sets all the price fields as needed
+     */
     @FXML
-    void setFields(){
+    void setFields() {
         currentOrder = mainMenuController.getCurrentOrder();
         storeOrders = mainMenuController.getStoreOrders();
         orderNumberText.setText(String.valueOf(currentOrder.getID()));
@@ -64,20 +83,30 @@ public class CurrentOrderController {
         salesTaxText.setText(String.format("%,.2f", currentOrder.getSubtotal() * 0.06625));
         orderTotalText.setText(String.format("%,.2f", currentOrder.getTotalPrice()));
         pizzaList.getItems().clear();
-        for(Pizza pizza : currentOrder.getOrderList()){
+        for (Pizza pizza : currentOrder.getOrderList()) {
             pizzaList.getItems().add(pizza.toString());
         }
     }
+
+    /**
+     * removePizza removes the pizza from the order
+     *
+     * @param event removePizzaButton
+     */
     @FXML
     void removePizza(ActionEvent event) {
-        if (!pizzaList.getItems().isEmpty() && pizzaList.getSelectionModel().getSelectedItem() != null){
+        if (!pizzaList.getItems().isEmpty() && pizzaList.getSelectionModel().getSelectedItem() != null) {
             mainMenuController.removePizzaFromOrder(pizzaList.getSelectionModel().getSelectedIndex());
             pizzaList.getItems().remove(pizzaList.getSelectionModel().getSelectedItem());
         }
         setFields();
     }
+
+    /**
+     * clearFields clears all the fields in the CurrentOrderScene
+     */
     @FXML
-    void clearFields(){
+    void clearFields() {
         orderNumberText.clear();
         subtotalText.clear();
         salesTaxText.clear();
@@ -85,9 +114,14 @@ public class CurrentOrderController {
         pizzaList.getItems().clear();
     }
 
+    /**
+     * placeOrder places the order and sends it to communicate with the main controller
+     *
+     * @param event placeOrderButton
+     */
     @FXML
     void placeOrder(ActionEvent event) {
-        if(currentOrder.getTotalPrice() == 0){
+        if (currentOrder.getTotalPrice() == 0) {
             //display error message telling user to please add items to the order first
             return;
         }
@@ -96,8 +130,11 @@ public class CurrentOrderController {
         displayOrderPlacedAlert();
     }
 
+    /**
+     * displayOrderPlacedAlert displays the popup of that informs user that the order has been placed
+     */
     @FXML
-    void displayOrderPlacedAlert(){
+    void displayOrderPlacedAlert() {
         Alert added = new Alert(Alert.AlertType.INFORMATION);
         added.setContentText("Order Placed!");
         added.showAndWait();

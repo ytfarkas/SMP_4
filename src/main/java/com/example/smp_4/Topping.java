@@ -1,5 +1,10 @@
 package com.example.smp_4;
 
+/**
+ * Topping is an enum class that lists all available toppings
+ *
+ * @Author David Rahabi, Judah Farkas
+ */
 public enum Topping
 {
     SAUSAGE,

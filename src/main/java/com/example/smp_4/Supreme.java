@@ -2,9 +2,19 @@ package com.example.smp_4;
 
 import java.util.ArrayList;
 
-public class Supreme extends Pizza{
+/**
+ * Supreme is an extension of the Pizza class that builds a Supreme pizza.
+ * This class also outputs the price as well as the string version of a pizza
+ *
+ * @Author David Rahabi, Judah Farkas
+ */
 
-    public Supreme(){
+public class Supreme extends Pizza {
+
+    /**
+     * Supreme is the constructor for a Supreme pizza
+     */
+    public Supreme() {
         toppings = new ArrayList<Topping>();
         sauce = Sauce.TOMATO;
         toppings.add(Topping.BLACK_OLIVE);
@@ -15,6 +25,13 @@ public class Supreme extends Pizza{
         toppings.add(Topping.SAUSAGE);
         toppings.add(Topping.MUSHROOM);
     }
+
+    /**
+     * Price returns the price of the Supreme pizza
+     * This overrides the price function in the Pizza class
+     *
+     * @return price, Double pizza price
+     */
     @Override
     public double price() {
         double price = 0;
@@ -25,27 +42,32 @@ public class Supreme extends Pizza{
         } else if (size.equals(Size.LARGE)) {
             price = 19.99;
         }
-        if(extraCheese){
+        if (extraCheese) {
             price += 1.0;
         }
-        if(extraSauce){
+        if (extraSauce) {
             price += 1.0;
         }
 
         return price;
     }
 
+    /**
+     * ToString returns the pizza inputs to a string
+     *
+     * @return srt, string
+     */
     @Override
-    public String toString(){
+    public String toString() {
 
         String str = "[Supreme] Black Olive Onion Green Pepper Pepperoni Ham Sausage Mushroom " +
-               size.name() + " " + sauce.name() + " ";
+                size.name() + " " + sauce.name() + " ";
 
-        if(extraSauce){
+        if (extraSauce) {
             str = str + "extra Sauce ";
         }
 
-        if(extraCheese){
+        if (extraCheese) {
             str = str + "extra cheese ";
         }
 

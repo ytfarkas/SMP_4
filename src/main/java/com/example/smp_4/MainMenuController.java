@@ -14,6 +14,12 @@ import javafx.scene.control.Alert;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * MainMenuController is the main controller for all the scenes
+ * This controller takes in all inputted orders as well as shows all the different scene in the program
+ *
+ * @Author David Rahabi, Judah Farkas
+ */
 public class MainMenuController {
 
     private CurrentOrderController currentOrderController;
@@ -51,29 +57,65 @@ public class MainMenuController {
     @FXML
     private ImageView storeOrderImage;
 
-    public void addToCurrentOrder(Pizza pizza){
+    /**
+     * addToCurrentOrder takes the inputs from the other scenes and adds the pizza to the current order
+     *
+     * @param pizza pizza
+     */
+    public void addToCurrentOrder(Pizza pizza) {
         currentOrder.addToOrder(pizza);
     }
-    public void addToStoreOrders(){
+
+    /**
+     * addToStoreOrder adds the current order to the store order
+     */
+    public void addToStoreOrders() {
         storeOrders.addOrder(currentOrder);
         currentOrder = new Order(storeOrders.getCurrentOrderNumber(), new ArrayList<Pizza>());
         storeOrderController.setStoreOrders();
     }
 
-    public StoreOrders getStoreOrders(){
+    /**
+     * getStoreOrder returns the current store orders
+     *
+     * @return storeOrder
+     */
+    public StoreOrders getStoreOrders() {
         return storeOrders;
     }
-    public Order getCurrentOrder(){
+
+    /**
+     * getCurrentOrder returns the current order
+     *
+     * @return currentOrder
+     */
+    public Order getCurrentOrder() {
         return currentOrder;
     }
-    public void removePizzaFromOrder(int index){
+
+    /**
+     * removePizzaFromOrder removes the pizza from the current order
+     *
+     * @param index currentOrderIndex
+     */
+    public void removePizzaFromOrder(int index) {
         currentOrder.removePizza(index);
     }
-    public void cancelOrder(int id){
+
+    /**
+     * cancelOrder cancels the order from storeOrders
+     *
+     * @param id currentOrderID
+     */
+    public void cancelOrder(int id) {
         storeOrders.cancelOrder(id);
     }
+
+    /**
+     * initialize initializes everything in the MainMenuController that needs to be initializable
+     */
     @FXML
-    void initialize(){
+    void initialize() {
         Image specialImage = new Image("file:src/main/resources/com/example/smp_4/Photos/Specialty_Pizza.jpeg");
         specialtyPizzaImage.setImage(specialImage);
         Image buildPizza = new Image("file:src/main/resources/com/example/smp_4/Photos/buildPizzaImage.jpeg");
@@ -85,19 +127,25 @@ public class MainMenuController {
 
         storeOrders = new StoreOrders();
         currentOrder = new Order(storeOrders.getCurrentOrderNumber(), new ArrayList<Pizza>());
-       try {
-           initializeSpecialtyMenu();
-           initializeCurrentOrder();
-           initializeStoreOrders();
-           initializeBuildYourOwn();
+        try {
+            initializeSpecialtyMenu();
+            initializeCurrentOrder();
+            initializeStoreOrders();
+            initializeBuildYourOwn();
 
-       }catch (IOException m){
-          // System.out.println("Stage Initialization error");
-           //what should be done here
-       }
+        } catch (IOException m) {
+            // System.out.println("Stage Initialization error");
+            //what should be done here
+        }
     }
+
+    /**
+     * initializeSpecialtyMenu initializes the Specialty Menu
+     *
+     * @throws IOException exception
+     */
     @FXML
-    void initializeSpecialtyMenu() throws IOException{
+    void initializeSpecialtyMenu() throws IOException {
         specialtyPizzaStage = new Stage();
         FXMLLoader SpecialtyPizzaMenu = new FXMLLoader(getClass().getResource("specialty-pizza.fxml"));
         Parent specialtyPizzaParent = SpecialtyPizzaMenu.load();
@@ -107,8 +155,13 @@ public class MainMenuController {
         specialtyPizzaController.setMainMenuController(this);
     }
 
+    /**
+     * initializeCurrentOrder initializes the Current order Menu
+     *
+     * @throws IOException exception
+     */
     @FXML
-    void initializeCurrentOrder() throws IOException{
+    void initializeCurrentOrder() throws IOException {
         currentOrderStage = new Stage();
         FXMLLoader currentOrderMenu = new FXMLLoader(getClass().getResource("current-order.fxml"));
         Parent currentOrderParent = currentOrderMenu.load();
@@ -117,8 +170,14 @@ public class MainMenuController {
         currentOrderController = currentOrderMenu.getController();
         currentOrderController.setMainMenuController(this);
     }
+
+    /**
+     * initializeBuildYourOwn initializes the Build Your Own Menu
+     *
+     * @throws IOException exception
+     */
     @FXML
-    void initializeBuildYourOwn() throws IOException{
+    void initializeBuildYourOwn() throws IOException {
         buildYourOwnStage = new Stage();
         FXMLLoader buildPizzaMenu = new FXMLLoader(getClass().getResource("build-your-own.fxml"));
         Parent root = buildPizzaMenu.load();
@@ -127,8 +186,14 @@ public class MainMenuController {
         buildYourOwnController = buildPizzaMenu.getController();
         buildYourOwnController.setMainMenuController(this);
     }
+
+    /**
+     * initializeStoreOrders initializes the Store Order Menu
+     *
+     * @throws IOException exception
+     */
     @FXML
-    void initializeStoreOrders() throws IOException{
+    void initializeStoreOrders() throws IOException {
         storeOrdersStage = new Stage();
         FXMLLoader storeOrderMenu = new FXMLLoader(getClass().getResource("store-order.fxml"));
         Parent root = storeOrderMenu.load();
@@ -138,27 +203,52 @@ public class MainMenuController {
         storeOrderController.setMainMenuController(this);
         storeOrderController.resetChoiceSelection();
     }
+
+    /**
+     * specialtyPizzaMeu shows the specialty pizza menu stage
+     *
+     * @param event specialtyPizzaMenu button
+     * @throws IOException exception
+     */
     @FXML
     void specialtyPizzaMenu(ActionEvent event) throws IOException {
         specialtyPizzaStage.show();
     }
 
+    /**
+     * buildPizza shows the build pizza menu stage
+     *
+     * @param event buildPizza button
+     * @throws IOException exception
+     */
     @FXML
-    void buildPizza(ActionEvent event) throws IOException{
+    void buildPizza(ActionEvent event) throws IOException {
         buildYourOwnStage.show();
     }
 
+    /**
+     * yourOrder shows the current order menu stage
+     *
+     * @param event yourOrder button
+     * @throws IOException exception
+     */
     @FXML
     void yourOrder(ActionEvent event) throws IOException {
         currentOrderStage.show();
         currentOrderController.resetFields();
     }
 
+    /**
+     * storeOrder shows the store order menu stage
+     *
+     * @param event storeOrder button
+     * @throws IOException exception
+     */
     @FXML
-    void storeOrder(ActionEvent event) throws IOException{
+    void storeOrder(ActionEvent event) throws IOException {
         storeOrdersStage.show();
         storeOrderController.setStoreOrders();
         storeOrderController.resetChoiceSelection();
     }
 
-    }
+}
