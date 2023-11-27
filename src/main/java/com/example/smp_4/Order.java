@@ -11,12 +11,6 @@ public class Order {
         this.id = id;
         this.orderList = orderList;
     }
-
-    //tried something idk if its helpful
-    public Order(){
-        this.id = getID() + 1;
-        this.orderList = new ArrayList<Pizza>();
-    }
     public int getID(){
         return id;
     }
