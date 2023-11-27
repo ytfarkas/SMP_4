@@ -1,2 +1,4 @@
 Order # 1 [Deluxe] Sausage Mushroom Green Pepper Pepperoni Onion SMALL TOMATO $14.99
-Order # 1 [BuildYourOwn] BEEF HAM PEPPERONI SMALL TOMATO extra Sauce $9.99
+Order # 1 [BuildYourOwn] HAM PEPPERONI SAUSAGE BEEF SMALL TOMATO $10.48
+Order # 1 [Seafood] Shrimp Squid Crab Meats MEDIUM ALFREDO 19.99
+Order # 1 [Deluxe] Sausage Mushroom Green Pepper Pepperoni Onion SMALL TOMATO $14.99
