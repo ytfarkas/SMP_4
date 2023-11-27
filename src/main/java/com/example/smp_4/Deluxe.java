@@ -2,9 +2,19 @@ package com.example.smp_4;
 
 import java.util.ArrayList;
 
+/**
+ * BuildYourOwn is an extension of the Pizza class that builds a Deluxe pizza.
+ * This class also outputs the price as well as the string version of a pizza
+ *
+ * @Author David Rahabi, Judah Farkas
+ */
 public class Deluxe extends Pizza {
 
-    public Deluxe(){
+    /**
+     * This is the constructor for the Deluxe pizza
+     * This adds the toppings along with the sauce
+     */
+    public Deluxe() {
         toppings = new ArrayList<Topping>();
         sauce = Sauce.TOMATO;
         toppings.add(Topping.SAUSAGE);
@@ -15,6 +25,12 @@ public class Deluxe extends Pizza {
 
     }
 
+    /**
+     * Price returns the price of the custom pizza
+     * This overrides the price function in the Pizza class
+     *
+     * @return price, Double pizza price
+     */
     @Override
     public double price() {
         double price = 0;
@@ -26,25 +42,31 @@ public class Deluxe extends Pizza {
         } else if (size.equals(Size.LARGE)) {
             price = 18.99;
         }
-        if(extraCheese){
+        if (extraCheese) {
             price += 1.0;
         }
-        if(extraSauce){
+        if (extraSauce) {
             price += 1.0;
         }
         return price;
     }
+
+    /**
+     * ToString returns the pizza inputs to a string
+     *
+     * @return srt, string
+     */
     @Override
-    public String toString(){
+    public String toString() {
 
         String str = "[Deluxe] Sausage Mushroom Green Pepper Pepperoni Onion " +
                 size.name() + " " + sauce.name() + " ";
 
-        if(extraSauce){
+        if (extraSauce) {
             str = str + "extra Sauce ";
         }
 
-        if(extraCheese){
+        if (extraCheese) {
             str = str + "extra cheese ";
         }
 

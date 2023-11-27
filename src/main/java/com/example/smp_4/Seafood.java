@@ -2,14 +2,31 @@ package com.example.smp_4;
 
 import java.util.ArrayList;
 
-public class Seafood extends Pizza{
-    public Seafood(){
+/**
+ * Seafood is an extension of the Pizza class that builds a Seafood pizza.
+ * This class also outputs the price as well as the string version of a pizza
+ *
+ * @Author David Rahabi, Judah Farkas
+ */
+
+public class Seafood extends Pizza {
+    /**
+     * Seafood is the constructor for a Seafood pizza
+     */
+    public Seafood() {
         toppings = new ArrayList<Topping>();
         sauce = Sauce.ALFREDO;
         toppings.add(Topping.SHRIMP);
         toppings.add(Topping.SQUID);
         toppings.add(Topping.CRAB_MEAT);
     }
+
+    /**
+     * Price returns the price of the Seafood pizza
+     * This overrides the price function in the Pizza class
+     *
+     * @return price, Double pizza price
+     */
     @Override
     public double price() {
         double price = 0;
@@ -20,27 +37,34 @@ public class Seafood extends Pizza{
         } else if (size.equals(Size.LARGE)) {
             price = 21.99;
         }
-        if(extraCheese){
+        if (extraCheese) {
             price += 1.0;
         }
-        if(extraSauce){
+        if (extraSauce) {
             price += 1.0;
         }
 
         return price;
     }
 
+
+    /**
+     * ToString returns the pizza inputs to a string
+     *
+     * @return srt, string
+     */
     @Override
-    public String toString(){
+    public String toString() {
 
-        String sea = "[Seafood] Shrimp Squid Crab Meats "  +
-                size.name() + " " + sauce.name() + " ";;
+        String sea = "[Seafood] Shrimp Squid Crab Meats " +
+                size.name() + " " + sauce.name() + " ";
+        ;
 
-        if(extraSauce){
+        if (extraSauce) {
             sea = sea + "extra Sauce ";
         }
 
-        if(extraCheese){
+        if (extraCheese) {
             sea = sea + "extra cheese ";
         }
 

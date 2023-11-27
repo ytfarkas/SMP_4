@@ -2,10 +2,26 @@ package com.example.smp_4;
 
 import java.util.ArrayList;
 
-public class BuildYourOwn extends Pizza{
+/**
+ * BuildYourOwn is an extension of the Pizza class that builds a custom pizza.
+ * This class also outputs the price as well as the string version of a pizza
+ *
+ * @Author David Rahabi, Judah Farkas
+ */
+public class BuildYourOwn extends Pizza {
 
-    public BuildYourOwn(){
+    /**
+     * BuildYourOwn is the constructor for a custom pizza
+     */
+    public BuildYourOwn() {
     }
+
+    /**
+     * Price returns the price of the custom pizza
+     * This overrides the price function in the Pizza class
+     *
+     * @return price, Double price
+     */
     @Override
     public double price() {
         double price = 0;
@@ -16,29 +32,33 @@ public class BuildYourOwn extends Pizza{
         } else if (size.equals(Size.LARGE)) {
             price = 12.99;
         }
-        if(extraCheese){
+        if (extraCheese) {
             price += 1.0;
         }
-        if(extraSauce){
+        if (extraSauce) {
             price += 1.0;
         }
-        for(int i = 0; i < toppings.size(); i++){
-            if(i > 2) {
+        for (int i = 0; i < toppings.size(); i++) {
+            if (i > 2) {
                 price += 1.49; // first 3 toppings free, add 1.49 for every extra topping
             }
         }
-        return Math.round(price * 100.0)/ 100.0;
+        return Math.round(price * 100.0) / 100.0;
     }
 
+    /**
+     * ToString returns the pizza inputs to a string
+     *
+     * @return srt, string
+     */
     @Override
-    public String toString(){
+    public String toString() {
 
-        String tpngs ="";
-        for(Topping t : toppings){
-            if(t.name().contains("_")){
+        String tpngs = "";
+        for (Topping t : toppings) {
+            if (t.name().contains("_")) {
                 tpngs = tpngs + t.name().replace("_", " ") + " ";
-            }
-            else {
+            } else {
                 tpngs = tpngs + t.name() + " ";
             }
         }
@@ -46,11 +66,11 @@ public class BuildYourOwn extends Pizza{
         String str = "[BuildYourOwn] " + tpngs +
                 size.name() + " " + sauce.name() + " ";
 
-        if(extraSauce){
+        if (extraSauce) {
             str = str + "extra Sauce ";
         }
 
-        if(extraCheese){
+        if (extraCheese) {
             str = str + "extra cheese ";
         }
 

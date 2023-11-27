@@ -1,13 +1,15 @@
 package com.example.smp_4;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static  org.junit.Assert.*;
+import static org.junit.Assert.*;
+
 public class BuildYourOwnTest {
 
     @Test
-    public void valid1(){
+    public void valid1() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.SMALL;
@@ -21,8 +23,9 @@ public class BuildYourOwnTest {
         assertTrue(actualOutput);
 
     }
+
     @Test
-    public void valid2(){
+    public void valid2() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.MEDIUM;
@@ -38,8 +41,9 @@ public class BuildYourOwnTest {
         assertTrue(actualOutput);
 
     }
+
     @Test
-    public void valid3(){
+    public void valid3() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.LARGE;
@@ -58,8 +62,9 @@ public class BuildYourOwnTest {
         assertTrue(actualOutput);
 
     }
+
     @Test
-    public void valid4(){
+    public void valid4() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.MEDIUM;
@@ -73,8 +78,9 @@ public class BuildYourOwnTest {
         assertTrue(actualOutput);
 
     }
+
     @Test
-    public void valid5(){
+    public void valid5() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.LARGE;
@@ -90,8 +96,9 @@ public class BuildYourOwnTest {
         assertTrue(actualOutput);
 
     }
+
     @Test
-    public void invalid1(){
+    public void invalid1() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.LARGE;
@@ -105,8 +112,9 @@ public class BuildYourOwnTest {
         assertFalse(actualOutput);
 
     }
+
     @Test
-    public void invalid2(){
+    public void invalid2() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.SMALL;
@@ -122,8 +130,9 @@ public class BuildYourOwnTest {
         assertFalse(actualOutput);
 
     }
+
     @Test
-    public void invalid3(){
+    public void invalid3() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.LARGE;
@@ -141,8 +150,9 @@ public class BuildYourOwnTest {
         assertFalse(actualOutput);
 
     }
+
     @Test
-    public void invalid4(){
+    public void invalid4() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.MEDIUM;
@@ -156,8 +166,9 @@ public class BuildYourOwnTest {
         assertFalse(actualOutput);
 
     }
+
     @Test
-    public void invalid5(){
+    public void invalid5() {
         Pizza pizza = new BuildYourOwn();
         ArrayList<Topping> tpings = new ArrayList<Topping>();
         pizza.size = Size.SMALL;

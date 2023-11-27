@@ -2,8 +2,17 @@ package com.example.smp_4;
 
 import java.util.ArrayList;
 
-public class Meatzza extends Pizza{
-    public Meatzza(){
+/**
+ * Meatzza is an extension of the Pizza class that builds a Meatzza pizza.
+ * This class also outputs the price as well as the string version of a pizza
+ *
+ * @Author David Rahabi, Judah Farkas
+ */
+public class Meatzza extends Pizza {
+    /**
+     * Meatzza is the constructor for a Meatzza pizza
+     */
+    public Meatzza() {
         toppings = new ArrayList<Topping>();
         sauce = Sauce.TOMATO;
         toppings.add(Topping.PEPPERONI);
@@ -11,6 +20,13 @@ public class Meatzza extends Pizza{
         toppings.add(Topping.BEEF);
         toppings.add(Topping.SAUSAGE);
     }
+
+    /**
+     * Price returns the price of the Meataxe pizza
+     * This overrides the price function in the Pizza class
+     *
+     * @return price, Double pizza price
+     */
     @Override
     public double price() {
         double price = 0;
@@ -21,26 +37,32 @@ public class Meatzza extends Pizza{
         } else if (size.equals(Size.LARGE)) {
             price = 20.99;
         }
-        if(extraCheese){
+        if (extraCheese) {
             price += 1.0;
         }
-        if(extraSauce){
+        if (extraSauce) {
             price += 1.0;
         }
 
         return price;
     }
+
+    /**
+     * ToString returns the pizza inputs to a string
+     *
+     * @return srt, string
+     */
     @Override
-    public String toString(){
+    public String toString() {
 
         String str = "[Meatzza] Pepperoni Beef Ham Sausage " +
                 size.name() + " " + sauce.name() + " ";
 
-        if(extraSauce){
+        if (extraSauce) {
             str = str + "extra Sauce ";
         }
 
-        if(extraCheese){
+        if (extraCheese) {
             str = str + "extra cheese ";
         }
 

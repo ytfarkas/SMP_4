@@ -16,6 +16,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/**
+ * StoreOrderController is the controller that handles everything related to the store order menu
+ * This also exports all store orders into a txt file as well
+ */
 public class StoreOrderController {
     private StoreOrders storeOrders;
     private MainMenuController mainMenuController;
@@ -35,24 +39,41 @@ public class StoreOrderController {
     @FXML
     private TextField orderTotal;
 
+    /**
+     * setStoreOrders is the main consrtuctor for the store orders
+     */
     public void setStoreOrders() {
         storeOrders = mainMenuController.getStoreOrders();
         orderDropdown.getItems().clear();
     }
 
+    /**
+     * setMainMenuController links StoreOrderController and MAinMenuController to allow communication
+     *
+     * @param controller controller
+     */
     public void setMainMenuController(MainMenuController controller) {
         mainMenuController = controller;
     }
 
+    /**
+     * resetChoiceSelection resets the choice Selection
+     */
     public void resetChoiceSelection() {
         resetOrderChoice();
     }
 
+    /**
+     * initialize the listeners for StoreOrderController on startup of the code
+     */
     @FXML
     void initialize() {
         addOrderDropdownListener();
     }
 
+    /**
+     * resetOrderChoice resets the order selection
+     */
     @FXML
     void resetOrderChoice() {
         orderDropdown.setValue(null);
@@ -61,6 +82,9 @@ public class StoreOrderController {
         updateOrderDropdown();
     }
 
+    /**
+     * updateOrderDropdown updates the dropdown menu to select the order
+     */
     @FXML
     void updateOrderDropdown() {
         setStoreOrders();
@@ -70,6 +94,11 @@ public class StoreOrderController {
         }
     }
 
+    /**
+     * cancelOrder cancels the selected order
+     *
+     * @param event event
+     */
     @FXML
     void cancelOrder(ActionEvent event) {
         try {
@@ -83,12 +112,18 @@ public class StoreOrderController {
         }
     }
 
+    /**
+     * displayOrderCancelled displays the popup menu saying the order was canceled
+     */
     void displayOrderCancelled() {
         Alert added = new Alert(Alert.AlertType.INFORMATION);
         added.setContentText("Order Cancelled!");
         added.showAndWait();
     }
 
+    /**
+     * displayCancelError displays the error if was no selected order to be canceled
+     */
     @FXML
     void displayCancelError() {
         Alert added = new Alert(Alert.AlertType.ERROR);
@@ -96,6 +131,9 @@ public class StoreOrderController {
         added.showAndWait();
     }
 
+    /**
+     * addOrderDropdownListener adds listeners to the dropdown menu and adjust the data per selection
+     */
     @FXML
     void addOrderDropdownListener() {
         orderDropdown.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -115,6 +153,11 @@ public class StoreOrderController {
         });
     }
 
+    /**
+     * ExportStoreOrders exprots the store orders data onto a .txt file
+     *
+     * @param event event
+     */
     @FXML
     void ExportStoreOrder(ActionEvent event) {
         if (storeOrders.getStoreOrderList().isEmpty()) {
@@ -142,6 +185,9 @@ public class StoreOrderController {
         }
     }
 
+    /**
+     * displayStoreOrdersEmpty displays an error when there is no store orders to be exported
+     */
     @FXML
     void displayStoreOrdersEmpty() {
         Alert nullStoreOrder = new Alert(Alert.AlertType.ERROR);
