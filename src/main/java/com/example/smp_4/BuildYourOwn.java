@@ -27,7 +27,7 @@ public class BuildYourOwn extends Pizza{
                 price += 1.49; // first 3 toppings free, add 1.49 for every extra topping
             }
         }
-        return price;
+        return Math.round(price * 100.0)/ 100.0;
     }
 
     @Override
