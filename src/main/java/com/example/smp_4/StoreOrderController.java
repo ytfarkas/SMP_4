@@ -111,6 +111,9 @@ public class StoreOrderController {
 
     @FXML
     void ExportStoreOrder(ActionEvent event){
+            if(storeOrders.getStoreOrderList().isEmpty()){
+                displayStoreOrdersEmpty();
+            }
             try (PrintWriter output = new PrintWriter(new FileWriter("src/main/java/com/example/smp_4/output.txt"))) {
                 for (Order order : storeOrders.getStoreOrderList()) {
                     for (Pizza pizza : order.getOrderList()) {
@@ -124,11 +127,17 @@ public class StoreOrderController {
                 e.printStackTrace();
             }
             catch (NullPointerException e){
-                    Alert nullStoreOrder = new Alert(Alert.AlertType.ERROR);
-                    nullStoreOrder.setContentText("There are no store orders to be printed!");
-                    nullStoreOrder.showAndWait();
+                    displayStoreOrdersEmpty();
                 }
         }
+
+    @FXML
+    void displayStoreOrdersEmpty(){
+        Alert nullStoreOrder = new Alert(Alert.AlertType.ERROR);
+        nullStoreOrder.setContentText("There are no store orders to be printed!");
+        nullStoreOrder.showAndWait();
+    }
+
 
 
     }
